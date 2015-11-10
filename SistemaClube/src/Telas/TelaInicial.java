@@ -5,6 +5,7 @@
  */
 package Telas;
 
+import MembrosClube.Associado;
 import MembrosClube.Funcionario;
 import conexao.ConnectionFactory;
 import java.sql.Connection;
@@ -186,6 +187,8 @@ public class TelaInicial extends javax.swing.JFrame {
                     f.consultaFuncs(jlogin.getText(),jsenha.getText());
                     if(f.consultaFuncs(jlogin.getText(),jsenha.getText()) == true ){
                         JOptionPane.showMessageDialog(this, "Conectou");
+                        TelaAtendente tela = new TelaAtendente(this, true);
+                        tela.setVisible(true);
                     }
                     else{
                        JOptionPane.showMessageDialog(this, "Login ou senha Incorretos");
@@ -202,7 +205,7 @@ public class TelaInicial extends javax.swing.JFrame {
                 }  
            }
            else if(inicioCB2.isSelected()){
-              
+              Associado as = new Associado();
            }          
        }  
        else{
