@@ -1,0 +1,5 @@
+(English)
+create database sistema_clube and import database.
+
+(PT-BR)
+crie um banco de dados sistema_clube e importe o banco de dados
