@@ -171,28 +171,43 @@ public class TelaInicial extends javax.swing.JFrame {
        if(jlogin.getText().equals("") || jsenha.getText().equals("")){
            JOptionPane.showMessageDialog(this, "Preencha os campos!");
        }
-       
-            if (inicioCB1.isSelected()){             
-              Funcionario f = new Funcionario();
-               try {
-                   f.consultaFuncs(jlogin.getText(),jsenha.getText());
-                   if(f.consultaFuncs(jlogin.getText(),jsenha.getText()) == true ){
-                       JOptionPane.showMessageDialog(this, "Conectou");
-                   }
-                   else{
-                      JOptionPane.showMessageDialog(this, "Login ou senha Incorretos");
-                      jlogin.setText("");
-                      jsenha.setText("");
-                      inicioCB1.setSelected(false);
-                      inicioCB2.setSelected(false);
-                      jlogin.requestFocus();
-                   }
-               } catch (ClassNotFoundException ex) {
-                   JOptionPane.showMessageDialog(this, "class,Consulte o desenvolvedor " + ex.getMessage());
-               } catch (SQLException ex) {
-                   JOptionPane.showMessageDialog(this, "sql,Consulte o desenvolvedor " +ex.getMessage());
-               }          
-            }
+       else if(inicioCB1.isSelected() || inicioCB2.isSelected()){
+           if(inicioCB1.isSelected() && inicioCB2.isSelected()){
+               JOptionPane.showMessageDialog(this,"Selecione Apenas um campo!");
+               inicioCB1.setSelected(false);
+               inicioCB2.setSelected(false);
+                jlogin.setText(null);
+                jsenha.setText(null);
+                jlogin.requestFocus();               
+               
+           }else if(inicioCB1.isSelected()){
+                  Funcionario f = new Funcionario();
+                try {
+                    f.consultaFuncs(jlogin.getText(),jsenha.getText());
+                    if(f.consultaFuncs(jlogin.getText(),jsenha.getText()) == true ){
+                        JOptionPane.showMessageDialog(this, "Conectou");
+                    }
+                    else{
+                       JOptionPane.showMessageDialog(this, "Login ou senha Incorretos");
+                       jlogin.setText("");
+                       jsenha.setText("");
+                       inicioCB1.setSelected(false);
+                       inicioCB2.setSelected(false);
+                       jlogin.requestFocus();
+                    }
+                } catch (ClassNotFoundException ex) {
+                    JOptionPane.showMessageDialog(this, "class,Consulte o desenvolvedor " + ex.getMessage());
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(this, "sql,Consulte o desenvolvedor " +ex.getMessage());
+                }  
+           }
+           else if(inicioCB2.isSelected()){
+              
+           }          
+       }  
+       else{
+           JOptionPane.showMessageDialog(this,"Selecione um campo!");
+       }
         
        
         
