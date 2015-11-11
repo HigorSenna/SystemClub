@@ -104,7 +104,10 @@ public class TelaAtendente extends javax.swing.JDialog {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
+        TelaCadFunc tela = new TelaCadFunc(null, true); /*quando é um Dialog chamando 
+        outro Dialogo, o primeiro é null e nao this*/
+        
+        tela.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
