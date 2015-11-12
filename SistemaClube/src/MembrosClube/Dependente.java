@@ -10,10 +10,10 @@ public class Dependente extends Associado {
         super();
     }
 
-    public Dependente(String nome,String RG, String CPF, 
+    public Dependente(int id,String nome,String RG, String CPF, 
             String telefone, String endereco, String senhaClube){
         
-        super(nome, RG, CPF, telefone, endereco, senhaClube);
+        super(id,nome, RG, CPF, telefone, endereco, senhaClube);
     }
     
     

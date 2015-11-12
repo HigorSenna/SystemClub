@@ -9,6 +9,9 @@ import Log.Historico;
  */
 public class Associado {
     private String nome,RG,CPF,telefone,endereco,senhaClube;
+    private int id;
+
+    
     
     private Historico hist;
 
@@ -23,13 +26,14 @@ public class Associado {
     public Associado() {
     }
 
-    public Associado(String nome, String RG, String CPF, String telefone, String endereco, String senhaClube) {
+    public Associado(int id,String nome, String RG, String CPF, String telefone, String endereco, String senhaClube) {
         this.nome = nome;
         this.RG = RG;
         this.CPF = CPF;
         this.telefone = telefone;
         this.endereco = endereco;
         this.senhaClube = senhaClube;
+        this.id = id;
     }    
 
     public String getNome() {
@@ -78,6 +82,14 @@ public class Associado {
 
     public void setSenhaClube(String senhaClube) {
         this.senhaClube = senhaClube;
+    }
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
     protected void comprar(){

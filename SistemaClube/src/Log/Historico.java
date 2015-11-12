@@ -1,5 +1,7 @@
 
 package Log;
+import java.util.ArrayList;
+
 /**
  *
  * @author Higor Senna
@@ -7,6 +9,15 @@ package Log;
 public class Historico {
     private String horaEntrada,horaSaida,tipoAssociado,nome,CPF;
     private double totalGastos;
+    private ArrayList <Produto> lista;
+
+    public ArrayList<Produto> getLista() {
+        return lista;
+    }
+
+    public void addLista(Produto prod) {
+       lista.add(prod);
+    }
 
     public Historico() {
     }
@@ -18,6 +29,7 @@ public class Historico {
         this.nome = nome;
         this.CPF = CPF;
         this.totalGastos = totalGastos;
+        lista = new ArrayList<Produto>();
     }
     
     

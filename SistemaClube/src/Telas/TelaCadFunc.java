@@ -5,12 +5,28 @@
  */
 package Telas;
 
+import DaoClasses.ClassesProjeto.FuncionarioDao;
+import MembrosClube.Funcionario;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Higor Senna
  */
 public class TelaCadFunc extends javax.swing.JDialog {
-
+    public void limpar(){
+        JOptionPane.showConfirmDialog(this,"Deseja Realmente Limpar Os campos??","Limpar",JOptionPane.YES_NO_OPTION);
+        if(JOptionPane.YES_NO_OPTION == JOptionPane.YES_OPTION){
+             jFuncNome.setText("");
+            jFuncLogin.setText("");
+            jFuncSenha.setText("");
+        }
+       
+        
+    }
     /**
      * Creates new form TelaCadFunc
      */
@@ -28,12 +44,47 @@ public class TelaCadFunc extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jFuncNome = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jFuncLogin = new javax.swing.JTextField();
+        jFuncSenha = new javax.swing.JTextField();
+        jIncluirFunc = new javax.swing.JButton();
+        jLimparFunc = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Login");
+        jLabel1.setText("Login:");
+
+        jFuncNome.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabel2.setText("Nome:");
+
+        jLabel3.setText("Senha:");
+
+        jLabel4.setText("Cadastro de Funcionarios");
+
+        jFuncLogin.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jFuncSenha.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jIncluirFunc.setBackground(new java.awt.Color(51, 255, 0));
+        jIncluirFunc.setText("Incluir");
+        jIncluirFunc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jIncluirFuncActionPerformed(evt);
+            }
+        });
+
+        jLimparFunc.setBackground(new java.awt.Color(255, 0, 0));
+        jLimparFunc.setText("Limpar");
+        jLimparFunc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jLimparFuncActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -41,24 +92,79 @@ public class TelaCadFunc extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(179, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jLimparFunc)
+                        .addGap(18, 18, 18)
+                        .addComponent(jIncluirFunc)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jFuncSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jFuncLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jFuncNome, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(90, 90, 90)
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addContainerGap(378, Short.MAX_VALUE))
+                    .addComponent(jFuncNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jFuncLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jFuncSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jIncluirFunc)
+                    .addComponent(jLimparFunc))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jIncluirFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jIncluirFuncActionPerformed
+        Funcionario f = new Funcionario();
+       
+        if(jFuncNome.getText() != "" && jFuncLogin.getText() != "" && jFuncSenha.getText() != "" ){
+            f.setNome(jFuncNome.getText());
+            f.setLogin(jFuncLogin.getText());
+            f.setSenha(jFuncSenha.getText());
+            JOptionPane.showConfirmDialog(this,"Deseja Realmente inserir?","Inserir",JOptionPane.YES_NO_OPTION);
+            if(JOptionPane.YES_NO_OPTION == JOptionPane.YES_OPTION){
+                try {
+                   new FuncionarioDao().inserir(f);
+                   JOptionPane.showMessageDialog(this, "Funcionario Incluido com Sucesso!");
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(this, "Contate o Desenvolvedor");
+                } catch (ClassNotFoundException ex) {
+                    JOptionPane.showMessageDialog(this, "Contate o Desenvolvedor");
+                }
+            }
+        }
+        
+    }//GEN-LAST:event_jIncluirFuncActionPerformed
+
+    private void jLimparFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLimparFuncActionPerformed
+       limpar();
+    }//GEN-LAST:event_jLimparFuncActionPerformed
 
     /**
      * @param args the command line arguments
@@ -103,7 +209,14 @@ public class TelaCadFunc extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField jFuncLogin;
+    private javax.swing.JTextField jFuncNome;
+    private javax.swing.JTextField jFuncSenha;
+    private javax.swing.JButton jIncluirFunc;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JButton jLimparFunc;
     // End of variables declaration//GEN-END:variables
 }

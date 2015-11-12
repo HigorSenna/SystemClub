@@ -15,7 +15,7 @@ public class Funcionario {
     public boolean consultaFuncs(String log, String pass) throws ClassNotFoundException, SQLException{
         boolean exist = false;
         Connection c = ConnectionFactory.getConnection();
-        String sql = "SELECT Login,Senha from funcionarios WHERE Login = ? and Senha = ?";
+        String sql = "SELECT Login,Senha from funcionario WHERE Login = ? and Senha = ?";
         
         PreparedStatement stm = c.prepareStatement(sql);
         stm.setString(1, log);
@@ -29,15 +29,27 @@ public class Funcionario {
         return exist;        
     }
     private String nome,login,senha;
+    int id;
+
 
     public Funcionario() {
     }
 
-    public Funcionario(String nome, String login, String senha) {
+    public Funcionario(int id,String nome, String login, String senha) {
         this.nome = nome;
         this.login = login;
         this.senha = senha;
+        this.id = id;
     }   
+    
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getNome() {
         return nome;

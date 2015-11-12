@@ -54,10 +54,10 @@ public class AssociadoTitular extends Associado{
     }
 
     public AssociadoTitular(int id, String nome, String RG, String CPF, 
-            String telefone, String endereco, String senhaClube) {
+        String telefone, String endereco, String senhaClube) {
         
-        super(nome, RG, CPF, telefone, endereco, senhaClube);
-        this.id = id;
+        super(id,nome, RG, CPF, telefone, endereco, senhaClube);
+        
     }    
     
     public int getId(){
