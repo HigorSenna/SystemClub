@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Telas;
+package Telas.funcionarios;
 
 import DaoClasses.ClassesProjeto.FuncionarioDao;
 import MembrosClube.Funcionario;
@@ -18,14 +18,18 @@ import javax.swing.JOptionPane;
  */
 public class TelaCadFunc extends javax.swing.JDialog {
     public void limpar(){
-        JOptionPane.showConfirmDialog(this,"Deseja Realmente Limpar Os campos??","Limpar",JOptionPane.YES_NO_OPTION);
+        JOptionPane.showConfirmDialog(this,"Deseja realmente limpar os campos??","Limpar",JOptionPane.YES_NO_OPTION);
         if(JOptionPane.YES_NO_OPTION == JOptionPane.YES_OPTION){
              jFuncNome.setText("");
             jFuncLogin.setText("");
             jFuncSenha.setText("");
-        }
-       
-        
+        }           
+    }
+    
+    public void limparNoConfirm(){
+         jFuncNome.setText("");
+         jFuncLogin.setText("");
+         jFuncSenha.setText("");
     }
     /**
      * Creates new form TelaCadFunc
@@ -70,7 +74,6 @@ public class TelaCadFunc extends javax.swing.JDialog {
 
         jFuncSenha.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jIncluirFunc.setBackground(new java.awt.Color(51, 255, 0));
         jIncluirFunc.setText("Incluir");
         jIncluirFunc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,7 +81,6 @@ public class TelaCadFunc extends javax.swing.JDialog {
             }
         });
 
-        jLimparFunc.setBackground(new java.awt.Color(255, 0, 0));
         jLimparFunc.setText("Limpar");
         jLimparFunc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,11 +149,12 @@ public class TelaCadFunc extends javax.swing.JDialog {
             f.setNome(jFuncNome.getText());
             f.setLogin(jFuncLogin.getText());
             f.setSenha(jFuncSenha.getText());
-            JOptionPane.showConfirmDialog(this,"Deseja Realmente inserir?","Inserir",JOptionPane.YES_NO_OPTION);
+            JOptionPane.showConfirmDialog(this,"Deseja realmente inserir?","Inserir",JOptionPane.YES_NO_OPTION);
             if(JOptionPane.YES_NO_OPTION == JOptionPane.YES_OPTION){
                 try {
                    new FuncionarioDao().inserir(f);
                    JOptionPane.showMessageDialog(this, "Funcionario Incluido com Sucesso!");
+                   limparNoConfirm();
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(this, "Contate o Desenvolvedor");
                 } catch (ClassNotFoundException ex) {
@@ -219,4 +222,14 @@ public class TelaCadFunc extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JButton jLimparFunc;
     // End of variables declaration//GEN-END:variables
+    private Funcionario funcAlterado = null;
+    
+    public void preencheTela(Funcionario func) {
+        jFuncNome.setText(func.getNome());
+        jFuncLogin.setText(func.getLogin());
+        jFuncSenha.setText(func.getSenha());        
+        funcAlterado = func;
+        
+    }
+
 }

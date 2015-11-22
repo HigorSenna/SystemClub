@@ -5,6 +5,7 @@
  */
 package Telas;
 
+import Telas.funcionarios.TelaAtendente;
 import MembrosClube.Associado;
 import MembrosClube.Funcionario;
 import conexao.ConnectionFactory;
@@ -39,6 +40,7 @@ public class TelaInicial extends javax.swing.JFrame {
     private void initComponents() {
 
         jToggleButton1 = new javax.swing.JToggleButton();
+        jLayeredPane1 = new javax.swing.JLayeredPane();
         label1 = new java.awt.Label();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -48,14 +50,26 @@ public class TelaInicial extends javax.swing.JFrame {
         inicioCB2 = new javax.swing.JCheckBox();
         jBotaoLimpar = new javax.swing.JButton();
         jsenha = new javax.swing.JPasswordField();
+        jLabel3 = new javax.swing.JLabel();
 
         jToggleButton1.setText("jToggleButton1");
+
+        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
+        jLayeredPane1.setLayout(jLayeredPane1Layout);
+        jLayeredPane1Layout.setHorizontalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jLayeredPane1Layout.setVerticalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         label1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         label1.setFont(new java.awt.Font("Dialog", 0, 40)); // NOI18N
-        label1.setText("\t\t\t       BEM VINDO AO CLUBE!");
+        label1.setText("\t\t\t          SISTEMA DO CLUBE");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Login");
@@ -103,19 +117,14 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Telas/imagens/club.jpg"))); // NOI18N
+        jLabel3.setText("jLabel3");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(label1, javax.swing.GroupLayout.DEFAULT_SIZE, 607, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(165, 165, 165)
-                .addComponent(jBotaoLimpar)
-                .addGap(40, 40, 40)
-                .addComponent(jBotaoEntrar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(label1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,11 +141,24 @@ public class TelaInicial extends javax.swing.JFrame {
                             .addComponent(jlogin, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
                             .addComponent(jsenha))))
                 .addGap(217, 217, 217))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(165, 165, 165)
+                        .addComponent(jBotaoLimpar)
+                        .addGap(40, 40, 40)
+                        .addComponent(jBotaoEntrar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 604, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(79, 79, 79)
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -154,7 +176,7 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBotaoEntrar)
                     .addComponent(jBotaoLimpar))
-                .addContainerGap(203, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         pack();
@@ -189,9 +211,12 @@ public class TelaInicial extends javax.swing.JFrame {
                 try {
                     f.consultaFuncs(jlogin.getText(),jsenha.getText());
                     if(f.consultaFuncs(jlogin.getText(),jsenha.getText()) == true ){
-                        JOptionPane.showMessageDialog(this, "Conectou");
+                        JOptionPane.showMessageDialog(this, "Bem Vindo " + jlogin.getText());                        
                         TelaAtendente tela = new TelaAtendente(this, true);
+                        
                         tela.setVisible(true);
+                        
+                        
                     }
                     else{
                        JOptionPane.showMessageDialog(this, "Login ou senha Incorretos");
@@ -274,6 +299,8 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JButton jBotaoLimpar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JTextField jlogin;
     private javax.swing.JPasswordField jsenha;

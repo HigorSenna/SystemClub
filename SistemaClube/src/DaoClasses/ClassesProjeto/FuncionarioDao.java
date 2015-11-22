@@ -70,18 +70,18 @@ public class FuncionarioDao implements DaoGenerics<Funcionario,Integer> {
     }
 
     @Override
-    public ArrayList<Funcionario> buscarTodos(Funcionario f) throws SQLException, ClassNotFoundException {
+    public ArrayList<Funcionario> buscarTodos() throws SQLException, ClassNotFoundException {
         Connection c = ConnectionFactory.getConnection();
         
         String sql = "select * from funcionario;";
         PreparedStatement stm = c.prepareStatement(sql);
         
-        ResultSet rs = stm.executeQuery(sql);
+        ResultSet rs = stm.executeQuery();
         
         ArrayList<Funcionario> lista = new ArrayList<>();
         
         while(rs.next()){
-            Funcionario func = new Funcionario(rs.getInt("id"),rs.getString("nome"),
+            Funcionario func = new Funcionario(rs.getInt("id_funcionario"),rs.getString("nome"),
                      rs.getString("login"),
                      rs.getString("senha"));
             
@@ -99,10 +99,10 @@ public class FuncionarioDao implements DaoGenerics<Funcionario,Integer> {
          PreparedStatement stm = c.prepareStatement(sql);
          stm.setInt(1,chave);
          
-         ResultSet rs = stm.executeQuery(sql);
+         ResultSet rs = stm.executeQuery();
          
          if(rs.next()){
-             Funcionario func = new Funcionario(rs.getInt("id"),rs.getString("nome"),
+             Funcionario func = new Funcionario(rs.getInt("id_funcionario"),rs.getString("nome"),
                      rs.getString("login"),
                      rs.getString("senha"));
                      

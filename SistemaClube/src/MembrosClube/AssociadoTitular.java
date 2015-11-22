@@ -16,6 +16,17 @@ public class AssociadoTitular extends Associado{
     private ContaBar cb;
     private ContaBancaria c;
     private Mensalidade mens;
+    
+    
+    public AssociadoTitular(){
+        super();
+    }
+    public AssociadoTitular(int id, String nome, String RG, String CPF, 
+        String telefone, String endereco, String senhaClube,int numConta) {
+        
+        super(id,nome, RG, CPF, telefone, endereco, senhaClube,numConta);
+        
+    }  
 
     public ContaBar getCb() {
         return cb;
@@ -47,19 +58,7 @@ public class AssociadoTitular extends Associado{
     }
     public Dependente getDependente(){
         return dep;
-    }
-
-    public AssociadoTitular(){
-        super();
-    }
-
-    public AssociadoTitular(int id, String nome, String RG, String CPF, 
-        String telefone, String endereco, String senhaClube) {
-        
-        super(id,nome, RG, CPF, telefone, endereco, senhaClube);
-        
     }    
-    
     public int getId(){
        return id;
     }

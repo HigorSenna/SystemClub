@@ -1,4 +1,4 @@
-
+    
 package MembrosClube;
 
 import Log.Historico;
@@ -9,7 +9,7 @@ import Log.Historico;
  */
 public class Associado {
     private String nome,RG,CPF,telefone,endereco,senhaClube;
-    private int id;
+    private int id,numConta;
 
     
     
@@ -26,7 +26,7 @@ public class Associado {
     public Associado() {
     }
 
-    public Associado(int id,String nome, String RG, String CPF, String telefone, String endereco, String senhaClube) {
+    public Associado(int id,String nome, String RG, String CPF, String telefone, String endereco, String senhaClube,int numConta) {
         this.nome = nome;
         this.RG = RG;
         this.CPF = CPF;
@@ -34,6 +34,7 @@ public class Associado {
         this.endereco = endereco;
         this.senhaClube = senhaClube;
         this.id = id;
+        this.numConta = numConta;
     }    
 
     public String getNome() {
@@ -90,6 +91,14 @@ public class Associado {
 
     public void setId(int id) {
         this.id = id;
+    }
+    
+      public int getNumConta() {
+        return numConta;
+    }
+
+    public void setNumConta(int numConta) {
+        this.numConta = numConta;
     }
     
     protected void comprar(){

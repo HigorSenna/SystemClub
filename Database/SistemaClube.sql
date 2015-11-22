@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `sistema_clube` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `sistema_clube`;
--- MySQL dump 10.13  Distrib 5.6.24, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.23, for Win64 (x86_64)
 --
 -- Host: localhost    Database: sistema_clube
 -- ------------------------------------------------------
--- Server version	5.6.25
+-- Server version	5.6.24-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -26,23 +26,23 @@ DROP TABLE IF EXISTS `associado_titular`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `associado_titular` (
   `id_associado` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(45) NOT NULL,
-  `CPF` varchar(14) NOT NULL,
-  `RG` varchar(13) NOT NULL,
-  `telefone` varchar(13) NOT NULL DEFAULT '',
-  `endereco` varchar(45) NOT NULL,
-  `senhaClube` varchar(20) NOT NULL,
+  `nome` varchar(45) DEFAULT NULL,
+  `CPF` varchar(14) DEFAULT NULL,
+  `RG` varchar(13) DEFAULT NULL,
+  `telefone` varchar(13) DEFAULT NULL,
+  `endereco` varchar(45) DEFAULT NULL,
+  `senhaClube` varchar(20) DEFAULT NULL,
   `CPF_dependente` varchar(14) DEFAULT NULL,
-  `numConta` int(11) NOT NULL,
-  `numCB` int(11) NOT NULL,
-  PRIMARY KEY (`id_associado`,`telefone`),
+  `numConta` int(11) DEFAULT NULL,
+  `numCB` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_associado`),
   KEY `FK_associ_dep_idx` (`CPF_dependente`),
   KEY `FK_associ_banco_idx` (`numConta`),
   KEY `FK_associ_bar_idx` (`numCB`),
   CONSTRAINT `FK_associ_banco` FOREIGN KEY (`numConta`) REFERENCES `conta_bancaria` (`numero`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_associ_bar` FOREIGN KEY (`numCB`) REFERENCES `contabar` (`numContaBar`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_associ_dep` FOREIGN KEY (`CPF_dependente`) REFERENCES `dependente` (`CPF_Dep`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -51,6 +51,7 @@ CREATE TABLE `associado_titular` (
 
 LOCK TABLES `associado_titular` WRITE;
 /*!40000 ALTER TABLE `associado_titular` DISABLE KEYS */;
+INSERT INTO `associado_titular` VALUES (12,'aaaa\'','aaaaa','aaaa','aaaa','aaaa','aaa',NULL,569,NULL);
 /*!40000 ALTER TABLE `associado_titular` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -76,6 +77,7 @@ CREATE TABLE `conta_bancaria` (
 
 LOCK TABLES `conta_bancaria` WRITE;
 /*!40000 ALTER TABLE `conta_bancaria` DISABLE KEYS */;
+INSERT INTO `conta_bancaria` VALUES (569,'gg','568',200.00);
 /*!40000 ALTER TABLE `conta_bancaria` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -141,7 +143,7 @@ CREATE TABLE `funcionario` (
   `login` varchar(20) NOT NULL,
   `senha` varchar(20) NOT NULL,
   PRIMARY KEY (`id_funcionario`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150,7 +152,7 @@ CREATE TABLE `funcionario` (
 
 LOCK TABLES `funcionario` WRITE;
 /*!40000 ALTER TABLE `funcionario` DISABLE KEYS */;
-INSERT INTO `funcionario` VALUES (1,'Teste','a','a'),(2,'Teste1','tt','tt'),(3,'FF','ff','ff');
+INSERT INTO `funcionario` VALUES (1,'Teste','a','a'),(4,'TesteModificado','aa','aa');
 /*!40000 ALTER TABLE `funcionario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -187,4 +189,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-11 20:25:40
+-- Dump completed on 2015-11-19 23:40:59

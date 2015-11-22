@@ -7,6 +7,8 @@ package DaoClasses.ClassesProjeto;
 
 import DaoClasses.DaoGenerics;
 import MembrosClube.Associado;
+import MembrosClube.AssociadoTitular;
+import MembrosClube.Dependente;
 import conexao.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,13 +20,17 @@ import java.util.ArrayList;
  *
  * @author aluno
  */
-public class AssociadoDao implements DaoGenerics<Associado, Integer> {
+public class AssociadoDao implements DaoGenerics<AssociadoTitular, Integer> {
 
     @Override
-    public void inserir(Associado a) throws SQLException, ClassNotFoundException {
+    public void inserir(AssociadoTitular a) throws SQLException, ClassNotFoundException {
+        
+         new ContaBancariaDao().inserir(a.getC());
+        // new Dependente .inserir(a.getC());
+         
         Connection c = ConnectionFactory.getConnection();
-        String sql = "INSERT INTO associado_titular (nome,CPF,RG,telefone,endereco,senhaClube) " 
-                +"values (?,?,?,?,?,?);";
+        String sql = "INSERT INTO associado_titular (nome,CPF,RG,telefone,endereco,senhaClube,numConta) " 
+                +"values (?,?,?,?,?,?,?);";
         
          PreparedStatement stm = c.prepareStatement(sql);
          
@@ -33,13 +39,16 @@ public class AssociadoDao implements DaoGenerics<Associado, Integer> {
          stm.setString(3,a.getRG());
          stm.setString(4,a.getTelefone());
          stm.setString(5,a.getEndereco());
-         stm.setString(6,a.getSenhaClube());
+         stm.setString(6,a.getSenhaClube());         
+         stm.setInt(7,a.getC().getNumero());         
+         
          
          stm.executeUpdate();
+         
     }
 
     @Override
-    public void alterar(Associado a) throws SQLException, ClassNotFoundException {
+    public void alterar(AssociadoTitular a) throws SQLException, ClassNotFoundException {
        Connection c =ConnectionFactory.getConnection();
         
         String sql = "UPDATE associado_titular SET " /*RESPEITAR OS ESPAÇOS*/
@@ -65,7 +74,7 @@ public class AssociadoDao implements DaoGenerics<Associado, Integer> {
     }
 
     @Override
-    public void deletar(Associado a) throws SQLException, ClassNotFoundException {
+    public void deletar(AssociadoTitular a) throws SQLException, ClassNotFoundException {
        Connection c = ConnectionFactory.getConnection();
         String sql = "DELETE FROM associado_titular WHERE " 
                 + "id_associado = ?;";
@@ -78,20 +87,20 @@ public class AssociadoDao implements DaoGenerics<Associado, Integer> {
     }
 
     @Override
-    public ArrayList<Associado> buscarTodos(Associado a) throws SQLException, ClassNotFoundException {
+    public ArrayList<AssociadoTitular> buscarTodos() throws SQLException, ClassNotFoundException {
        Connection c = ConnectionFactory.getConnection();
         
         String sql = "select * from associado_titular;";
         PreparedStatement stm = c.prepareStatement(sql);
         
-        ResultSet rs = stm.executeQuery(sql);
+        ResultSet rs = stm.executeQuery();
         
-        ArrayList<Associado> lista = new ArrayList<>();
+        ArrayList<AssociadoTitular> lista = new ArrayList<>();
         
         while(rs.next()){
-            Associado ass = new Associado(rs.getInt("id"),rs.getString("nome"),
+            AssociadoTitular ass = new AssociadoTitular(rs.getInt("id_associado"),rs.getString("nome"),
                      rs.getString("RG"),rs.getString("CPF"),rs.getString("telefone")
-                     ,rs.getString("endereco"),rs.getString("senhaClube"));
+                     ,rs.getString("endereco"),rs.getString("senhaClube"),rs.getInt("numConta"));
             
             lista.add(ass);        
         }
@@ -99,7 +108,7 @@ public class AssociadoDao implements DaoGenerics<Associado, Integer> {
     }
 
     @Override
-    public Associado buscarPelaChave(Integer chave) throws SQLException, ClassNotFoundException {
+    public AssociadoTitular buscarPelaChave(Integer chave) throws SQLException, ClassNotFoundException {
         Connection c = ConnectionFactory.getConnection();
         
         String sql = "select * from associado_titular WHERE id_associado = ?;";
@@ -107,12 +116,12 @@ public class AssociadoDao implements DaoGenerics<Associado, Integer> {
          PreparedStatement stm = c.prepareStatement(sql);
          stm.setInt(1,chave);
          
-         ResultSet rs = stm.executeQuery(sql);
+         ResultSet rs = stm.executeQuery();
          
          if(rs.next()){
-             Associado ass = new Associado(rs.getInt("id"),rs.getString("nome"),
+             AssociadoTitular ass = new AssociadoTitular(rs.getInt("id"),rs.getString("nome"),
                      rs.getString("RG"),rs.getString("CPF"),rs.getString("telefone")
-                     ,rs.getString("endereco"),rs.getString("senhaClube"));
+                     ,rs.getString("endereco"),rs.getString("senhaClube"),rs.getInt("numConta"));
                      
              return ass;
          }else{

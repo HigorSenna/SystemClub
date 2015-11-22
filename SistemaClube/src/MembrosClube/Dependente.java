@@ -11,9 +11,9 @@ public class Dependente extends Associado {
     }
 
     public Dependente(int id,String nome,String RG, String CPF, 
-            String telefone, String endereco, String senhaClube){
+            String telefone, String endereco, String senhaClube,int numConta){
         
-        super(id,nome, RG, CPF, telefone, endereco, senhaClube);
+        super(id,nome, RG, CPF, telefone, endereco, senhaClube,numConta);
     }
     
     

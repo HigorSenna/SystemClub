@@ -3,7 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/aluno.LABIVJ/Desktop/SystemClub-master%20DAOS%20E%20NOVA%20TELA/SistemaClube/src/Telas/TelaCadFunc.java</file>
+            <file>file:/C:/Users/Higor%20Senna/Documents/GitHub/SystemClub/SistemaClube/src/Telas/funcionarios/TelaCadAssociado.java</file>
+            <file>file:/C:/Users/Higor%20Senna/Documents/GitHub/SystemClub/SistemaClube/src/Telas/funcionarios/TelaRemoveAssoci.java</file>
+            <file>file:/C:/Users/Higor%20Senna/Documents/GitHub/SystemClub/SistemaClube/src/DaoClasses/ClassesProjeto/FuncionarioDao.java</file>
+            <file>file:/C:/Users/Higor%20Senna/Documents/GitHub/SystemClub/SistemaClube/src/DaoClasses/ClassesProjeto/AssociadoDao.java</file>
+            <file>file:/C:/Users/Higor%20Senna/Documents/GitHub/SystemClub/SistemaClube/src/MembrosClube/AssociadoTitular.java</file>
         </group>
     </open-files>
 </project-private>
