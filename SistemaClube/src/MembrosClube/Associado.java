@@ -8,7 +8,7 @@ import Log.Historico;
  * @author Higor Senna
  */
 public class Associado {
-    private String nome,RG,CPF,telefone,endereco,senhaClube;
+    private String nome,RG,CPF,telefone,endereco,senhaClube,tipo;
     private int id,numConta;
 
     
@@ -23,10 +23,10 @@ public class Associado {
         this.hist = hist;
     }    
 
-    public Associado() {
+    public Associado() {        
     }
 
-    public Associado(int id,String nome, String RG, String CPF, String telefone, String endereco, String senhaClube,int numConta) {
+    public Associado(int id,String nome, String RG, String CPF, String telefone, String endereco, String senhaClube,int numConta,String tipo) {
         this.nome = nome;
         this.RG = RG;
         this.CPF = CPF;
@@ -35,6 +35,7 @@ public class Associado {
         this.senhaClube = senhaClube;
         this.id = id;
         this.numConta = numConta;
+        this.tipo = tipo;
     }    
 
     public String getNome() {
@@ -100,6 +101,16 @@ public class Associado {
     public void setNumConta(int numConta) {
         this.numConta = numConta;
     }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+    
+    
     
     protected void comprar(){
     }

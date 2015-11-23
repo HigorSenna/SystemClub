@@ -8,6 +8,7 @@ import java.util.ArrayList;
  */
 public class Historico {
     private String horaEntrada,horaSaida,tipoAssociado,nome,CPF;
+    private boolean pagouDividaBar;
     private double totalGastos;
     private ArrayList <Produto> lista;
 
@@ -81,6 +82,16 @@ public class Historico {
     public void setTotalGastos(double totalGastos) {
         this.totalGastos = totalGastos;
     }
+
+    public boolean isPagouDividaBar() {
+        return pagouDividaBar;
+    }
+
+    public void setPagouDividaBar(boolean pagouDividaBar) {
+        this.pagouDividaBar = pagouDividaBar;
+    }
+    
+    
     
     
 }

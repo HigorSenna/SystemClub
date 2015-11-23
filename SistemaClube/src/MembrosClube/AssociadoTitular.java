@@ -22,9 +22,9 @@ public class AssociadoTitular extends Associado{
         super();
     }
     public AssociadoTitular(int id, String nome, String RG, String CPF, 
-        String telefone, String endereco, String senhaClube,int numConta) {
+        String telefone, String endereco, String senhaClube,int numConta,String tipo) {
         
-        super(id,nome, RG, CPF, telefone, endereco, senhaClube,numConta);
+        super(id,nome, RG, CPF, telefone, endereco, senhaClube,numConta,tipo);
         
     }  
 

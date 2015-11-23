@@ -7,12 +7,16 @@ package Telas;
 
 import Telas.funcionarios.TelaAtendente;
 import MembrosClube.Associado;
+import MembrosClube.AssociadoTitular;
 import MembrosClube.Funcionario;
+import Telas.associado.TelaAssociado;
 import conexao.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -190,6 +194,64 @@ public class TelaInicial extends javax.swing.JFrame {
        inicioCB2.setSelected(false); //associado
        jlogin.requestFocus();  
       }
+      
+         
+        public boolean consultaAssoci(String pass) throws ClassNotFoundException, SQLException{
+            boolean exist = false;
+            Connection c = ConnectionFactory.getConnection();
+            String sql = "SELECT senhaClube from associado_titular WHERE senhaClube = ? ";
+
+            PreparedStatement stm = c.prepareStatement(sql);        
+            stm.setString(1,pass);               
+            ResultSet rs;
+            rs = stm.executeQuery();
+
+            if(rs.next()){
+               exist = true;
+            }
+            return exist;        
+        }
+        
+        public String buscarNome(String senha) throws SQLException, ClassNotFoundException {
+        Connection c = ConnectionFactory.getConnection();
+        
+        String sql = "select * from associado_titular WHERE senhaClube = ?;";
+        
+         PreparedStatement stm = c.prepareStatement(sql);
+         stm.setString(1,senha);
+         
+         ResultSet rs = stm.executeQuery();
+         
+         if(rs.next()){
+             AssociadoTitular ass = new AssociadoTitular(rs.getInt("id_associado"),rs.getString("nome"),
+                     rs.getString("RG"),rs.getString("CPF"),rs.getString("telefone")
+                     ,rs.getString("endereco"),rs.getString("senhaClube"),rs.getInt("numConta"),rs.getString("tipo_associado"));
+                     
+             return ass.getNome();
+         }else{
+             return null;
+         }
+    }
+        public String buscarTipo(String senha) throws ClassNotFoundException, SQLException{
+            Connection c = ConnectionFactory.getConnection();
+        
+        String sql = "select * from associado_titular WHERE senhaClube = ?;";
+        
+         PreparedStatement stm = c.prepareStatement(sql);
+         stm.setString(1,senha);
+         
+         ResultSet rs = stm.executeQuery();
+         
+         if(rs.next()){
+             AssociadoTitular ass = new AssociadoTitular(rs.getInt("id_associado"),rs.getString("nome"),
+                     rs.getString("RG"),rs.getString("CPF"),rs.getString("telefone")
+                     ,rs.getString("endereco"),rs.getString("senhaClube"),rs.getInt("numConta"),rs.getString("tipo_associado"));
+                     
+             return ass.getTipo();
+         }else{
+             return null;
+         }
+        }
     private void jloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jloginActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jloginActionPerformed
@@ -202,9 +264,12 @@ public class TelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_jBotaoLimparActionPerformed
 
     private void jBotaoEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoEntrarActionPerformed
-      if(jlogin.getText().equals("") || jsenha.getText().equals("")){
+      if((jlogin.getText().equals("") || jsenha.getText().equals("")) && inicioCB1.isSelected()){
            JOptionPane.showMessageDialog(this, "Preencha os campos!");
        }
+      else if(jsenha.getText().equals("") && inicioCB2.isSelected()){
+          JOptionPane.showMessageDialog(this, "Preencha os campos!");
+      }
        else if(inicioCB1.isSelected() || inicioCB2.isSelected()){           
            if(inicioCB1.isSelected()){
                   Funcionario f = new Funcionario();
@@ -214,9 +279,7 @@ public class TelaInicial extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this, "Bem Vindo " + jlogin.getText());                        
                         TelaAtendente tela = new TelaAtendente(this, true);
                         
-                        tela.setVisible(true);
-                        
-                        
+                        tela.setVisible(true);                       
                     }
                     else{
                        JOptionPane.showMessageDialog(this, "Login ou senha Incorretos");
@@ -229,17 +292,37 @@ public class TelaInicial extends javax.swing.JFrame {
                 }  
            }
            else if(inicioCB2.isSelected()){
-              Associado as = new Associado();
+              AssociadoTitular at = new AssociadoTitular();
+              
+              try {
+                    consultaAssoci(jsenha.getText());
+                    String tipo = buscarTipo(jsenha.getText() +"");
+                    if(consultaAssoci(jsenha.getText()) == true){   
+                       JOptionPane.showMessageDialog(this, "Verificar Mensalidade! "); 
+                       String nome = buscarNome(jsenha.getText()); 
+                       JOptionPane.showMessageDialog(this, "Bem Vindo " + nome); 
+                       TelaAssociado tela = new TelaAssociado(this, true);                        
+                       tela.setVisible(true);                      
+                    }
+                    else if(consultaAssoci(jsenha.getText()) == true && tipo != "dependente"){
+                        JOptionPane.showMessageDialog(this, "Verificar Mensalidade! "); 
+                    }
+                    else{
+                       JOptionPane.showMessageDialog(this, "Login ou senha Incorretos");
+                       limparCampos();  
+                    }
+                } catch (ClassNotFoundException ex) {
+                    JOptionPane.showMessageDialog(this, "class,Consulte o desenvolvedor " + ex.getMessage());
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(this, "sql,Consulte o desenvolvedor " +ex.getMessage());
+                }  
            }          
        }  
        else{
            JOptionPane.showMessageDialog(this,"Selecione um campo!");
-       }
-        
-       
-        
+       } 
     }//GEN-LAST:event_jBotaoEntrarActionPerformed
-
+    
     private void inicioCB1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inicioCB1MouseClicked
         if(inicioCB2.isSelected()){
             JOptionPane.showMessageDialog(this, "Campo Associado ja esta selecionado ");

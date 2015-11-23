@@ -29,8 +29,8 @@ public class AssociadoDao implements DaoGenerics<AssociadoTitular, Integer> {
         // new Dependente .inserir(a.getC());
          
         Connection c = ConnectionFactory.getConnection();
-        String sql = "INSERT INTO associado_titular (nome,CPF,RG,telefone,endereco,senhaClube,numConta) " 
-                +"values (?,?,?,?,?,?,?);";
+        String sql = "INSERT INTO associado_titular (nome,CPF,RG,telefone,endereco,senhaClube,numConta,tipo_associado) " 
+                +"values (?,?,?,?,?,?,?,?);";
         
          PreparedStatement stm = c.prepareStatement(sql);
          
@@ -40,7 +40,8 @@ public class AssociadoDao implements DaoGenerics<AssociadoTitular, Integer> {
          stm.setString(4,a.getTelefone());
          stm.setString(5,a.getEndereco());
          stm.setString(6,a.getSenhaClube());         
-         stm.setInt(7,a.getC().getNumero());         
+         stm.setInt(7,a.getC().getNumero());
+         stm.setString(8,a.getTipo());
          
          
          stm.executeUpdate();
@@ -100,7 +101,7 @@ public class AssociadoDao implements DaoGenerics<AssociadoTitular, Integer> {
         while(rs.next()){
             AssociadoTitular ass = new AssociadoTitular(rs.getInt("id_associado"),rs.getString("nome"),
                      rs.getString("RG"),rs.getString("CPF"),rs.getString("telefone")
-                     ,rs.getString("endereco"),rs.getString("senhaClube"),rs.getInt("numConta"));
+                     ,rs.getString("endereco"),rs.getString("senhaClube"),rs.getInt("numConta"),rs.getString("tipo_associado"));
             
             lista.add(ass);        
         }
@@ -121,7 +122,7 @@ public class AssociadoDao implements DaoGenerics<AssociadoTitular, Integer> {
          if(rs.next()){
              AssociadoTitular ass = new AssociadoTitular(rs.getInt("id"),rs.getString("nome"),
                      rs.getString("RG"),rs.getString("CPF"),rs.getString("telefone")
-                     ,rs.getString("endereco"),rs.getString("senhaClube"),rs.getInt("numConta"));
+                     ,rs.getString("endereco"),rs.getString("senhaClube"),rs.getInt("numConta"),rs.getString("tipo_associado"));
                      
              return ass;
          }else{

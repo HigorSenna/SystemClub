@@ -35,14 +35,18 @@ CREATE TABLE `associado_titular` (
   `CPF_dependente` varchar(14) DEFAULT NULL,
   `numConta` int(11) DEFAULT NULL,
   `numCB` int(11) DEFAULT NULL,
+  `tipo_associado` varchar(45) DEFAULT NULL,
+  `num_historico` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_associado`),
   KEY `FK_associ_dep_idx` (`CPF_dependente`),
   KEY `FK_associ_banco_idx` (`numConta`),
   KEY `FK_associ_bar_idx` (`numCB`),
+  KEY `FK_historico_associ_idx` (`num_historico`),
   CONSTRAINT `FK_associ_banco` FOREIGN KEY (`numConta`) REFERENCES `conta_bancaria` (`numero`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_associ_bar` FOREIGN KEY (`numCB`) REFERENCES `contabar` (`numContaBar`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_associ_dep` FOREIGN KEY (`CPF_dependente`) REFERENCES `dependente` (`CPF_Dep`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+  CONSTRAINT `FK_associ_dep` FOREIGN KEY (`CPF_dependente`) REFERENCES `dependente` (`CPF_Dep`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_historico_associ` FOREIGN KEY (`num_historico`) REFERENCES `historico` (`id_historico`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -51,7 +55,7 @@ CREATE TABLE `associado_titular` (
 
 LOCK TABLES `associado_titular` WRITE;
 /*!40000 ALTER TABLE `associado_titular` DISABLE KEYS */;
-INSERT INTO `associado_titular` VALUES (12,'aaaa\'','aaaaa','aaaa','aaaa','aaaa','aaa',NULL,569,NULL);
+INSERT INTO `associado_titular` VALUES (12,'aaaa\'','aaaaa','aaaa','aaaa','aaaa','aaa',NULL,569,NULL,NULL,NULL),(13,'Higor Senna','079.968.856-78','GH-50.569.897','(85)9896-8969','Vale do Silício','123456',NULL,369,NULL,NULL,NULL),(14,'Admin','admin','admin','admin','admin','admin',NULL,11,NULL,'admin',NULL);
 /*!40000 ALTER TABLE `associado_titular` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -77,7 +81,7 @@ CREATE TABLE `conta_bancaria` (
 
 LOCK TABLES `conta_bancaria` WRITE;
 /*!40000 ALTER TABLE `conta_bancaria` DISABLE KEYS */;
-INSERT INTO `conta_bancaria` VALUES (569,'gg','568',200.00);
+INSERT INTO `conta_bancaria` VALUES (11,'admin','11',100.00),(369,'BB','381',500.00),(569,'gg','568',200.00);
 /*!40000 ALTER TABLE `conta_bancaria` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -157,6 +161,34 @@ INSERT INTO `funcionario` VALUES (1,'Teste','a','a'),(4,'TesteModificado','aa','
 UNLOCK TABLES;
 
 --
+-- Table structure for table `historico`
+--
+
+DROP TABLE IF EXISTS `historico`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `historico` (
+  `id_historico` int(11) NOT NULL,
+  `entrada` varchar(20) DEFAULT NULL,
+  `nome_associado` varchar(45) DEFAULT NULL,
+  `produtos_consumidos` varchar(400) DEFAULT NULL,
+  `divida_paga` varchar(45) DEFAULT NULL,
+  `saida` varchar(20) DEFAULT NULL,
+  `total_gastos` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id_historico`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `historico`
+--
+
+LOCK TABLES `historico` WRITE;
+/*!40000 ALTER TABLE `historico` DISABLE KEYS */;
+/*!40000 ALTER TABLE `historico` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `produto`
 --
 
@@ -189,4 +221,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-19 23:40:59
+-- Dump completed on 2015-11-23 16:41:47
