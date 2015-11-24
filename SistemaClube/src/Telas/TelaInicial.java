@@ -225,33 +225,14 @@ public class TelaInicial extends javax.swing.JFrame {
          if(rs.next()){
              AssociadoTitular ass = new AssociadoTitular(rs.getInt("id_associado"),rs.getString("nome"),
                      rs.getString("RG"),rs.getString("CPF"),rs.getString("telefone")
-                     ,rs.getString("endereco"),rs.getString("senhaClube"),rs.getInt("numConta"),rs.getString("tipo_associado"));
+                     ,rs.getString("endereco"),rs.getString("senhaClube"),rs.getInt("numConta"));
                      
              return ass.getNome();
          }else{
              return null;
          }
     }
-        public String buscarTipo(String senha) throws ClassNotFoundException, SQLException{
-            Connection c = ConnectionFactory.getConnection();
-        
-        String sql = "select * from associado_titular WHERE senhaClube = ?;";
-        
-         PreparedStatement stm = c.prepareStatement(sql);
-         stm.setString(1,senha);
-         
-         ResultSet rs = stm.executeQuery();
-         
-         if(rs.next()){
-             AssociadoTitular ass = new AssociadoTitular(rs.getInt("id_associado"),rs.getString("nome"),
-                     rs.getString("RG"),rs.getString("CPF"),rs.getString("telefone")
-                     ,rs.getString("endereco"),rs.getString("senhaClube"),rs.getInt("numConta"),rs.getString("tipo_associado"));
-                     
-             return ass.getTipo();
-         }else{
-             return null;
-         }
-        }
+       
     private void jloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jloginActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jloginActionPerformed
@@ -296,18 +277,18 @@ public class TelaInicial extends javax.swing.JFrame {
               
               try {
                     consultaAssoci(jsenha.getText());
-                    String tipo = buscarTipo(jsenha.getText() +"");
+                   
                     if(consultaAssoci(jsenha.getText()) == true){   
                         
                        JOptionPane.showMessageDialog(this, "Verificar Mensalidade! "); 
                        String nome = buscarNome(jsenha.getText()); 
-                      
+                       nome = nome.toUpperCase();
                        JOptionPane.showMessageDialog(this, "Bem Vindo " + nome);                       
                        TelaAssociado tela = new TelaAssociado(this, true); 
-                       tela.setLabel("Você está logado como " + nome);
+                       tela.setLabel("Você está logado como: -> " + nome);
                        tela.setVisible(true);                      
                     }
-                    else if(consultaAssoci(jsenha.getText()) == true && tipo != "dependente"){
+                    else if(consultaAssoci(jsenha.getText()) == true){
                         JOptionPane.showMessageDialog(this, "Verificar Mensalidade! "); 
                     }
                     else{

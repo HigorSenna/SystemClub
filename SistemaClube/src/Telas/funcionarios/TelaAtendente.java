@@ -37,6 +37,7 @@ public class TelaAtendente extends javax.swing.JDialog {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -45,6 +46,7 @@ public class TelaAtendente extends javax.swing.JDialog {
         jMenu1.setText("Atendente");
 
         jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.ALT_MASK));
+        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Telas/imagens/newCad.png"))); // NOI18N
         jMenuItem4.setText("Novo");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -54,6 +56,7 @@ public class TelaAtendente extends javax.swing.JDialog {
         jMenu1.add(jMenuItem4);
 
         jMenuItem7.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.ALT_MASK));
+        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Telas/imagens/mostrar.png"))); // NOI18N
         jMenuItem7.setText("Mostrar");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,6 +70,7 @@ public class TelaAtendente extends javax.swing.JDialog {
         jMenu2.setText("Associado");
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Telas/imagens/icon-cadastro.gif"))); // NOI18N
         jMenuItem1.setText("Cadastrar");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,6 +80,7 @@ public class TelaAtendente extends javax.swing.JDialog {
         jMenu2.add(jMenuItem1);
 
         jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Telas/imagens/remove.jpg"))); // NOI18N
         jMenuItem2.setText("Remover");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,8 +90,19 @@ public class TelaAtendente extends javax.swing.JDialog {
         jMenu2.add(jMenuItem2);
 
         jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Telas/imagens/edit.png"))); // NOI18N
         jMenuItem3.setText("Alterar");
         jMenu2.add(jMenuItem3);
+
+        jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Telas/imagens/dep.png"))); // NOI18N
+        jMenuItem5.setText("Cadastrar Dependente");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem5);
 
         jMenuBar1.add(jMenu2);
 
@@ -128,6 +144,11 @@ public class TelaAtendente extends javax.swing.JDialog {
         TelaRemoveAssoci tela = new TelaRemoveAssoci(null, true);
         tela.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+       TelaCadDep tela = new TelaCadDep(null, true);
+       tela.setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -180,6 +201,7 @@ public class TelaAtendente extends javax.swing.JDialog {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem7;
     // End of variables declaration//GEN-END:variables
 }

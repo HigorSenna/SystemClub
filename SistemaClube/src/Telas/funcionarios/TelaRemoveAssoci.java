@@ -111,8 +111,7 @@ public class TelaRemoveAssoci extends javax.swing.JDialog {
                 a.getEndereco(),
                 a.getTelefone(),
                 a.getSenhaClube(),
-                a.getC().getNumero() + "",               
-                a.getTipo()};
+                a.getC().getNumero() + ""};
             table.addRow(linha);
         }        
         

@@ -307,7 +307,7 @@ public class TelaCadAssociado extends javax.swing.JDialog {
             a.setCPF(jACPF.getText());
             a.setSenhaClube(jASenha.getText());
             a.setTelefone(jATel.getText());
-            a.setTipo(jATipo.getText());
+           
             
             con.setAgencia(jAAgencia.getText());
             con.setNumero(Integer.parseInt(jAConta.getText()));
