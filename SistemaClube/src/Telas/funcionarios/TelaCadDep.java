@@ -60,6 +60,7 @@ public class TelaCadDep extends javax.swing.JDialog {
         jDepNome = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -101,6 +102,13 @@ public class TelaCadDep extends javax.swing.JDialog {
             }
         });
 
+        jButton3.setText("Exibir");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -136,7 +144,9 @@ public class TelaCadDep extends javax.swing.JDialog {
                                 .addComponent(jDepNome, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(13, 13, 13))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 120, Short.MAX_VALUE)
+                        .addGap(31, 31, 31)
+                        .addComponent(jButton3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                         .addComponent(jButton2)
                         .addGap(33, 33, 33)
                         .addComponent(jButton1)
@@ -171,7 +181,8 @@ public class TelaCadDep extends javax.swing.JDialog {
                 .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
@@ -219,6 +230,11 @@ public class TelaCadDep extends javax.swing.JDialog {
         limparCampos();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        TelaExibirDep tela = new TelaExibirDep(null,true);
+        tela.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -264,6 +280,7 @@ public class TelaCadDep extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JTextField jDepCPF;
     private javax.swing.JTextField jDepEnd;
     private javax.swing.JTextField jDepNome;

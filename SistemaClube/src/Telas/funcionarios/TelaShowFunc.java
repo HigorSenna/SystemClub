@@ -126,7 +126,7 @@ public class TelaShowFunc extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-         try {   
+         try {        
 
             //preencher a grid
             ArrayList<Funcionario> listaF = new FuncionarioDao().buscarTodos();
@@ -156,7 +156,7 @@ public class TelaShowFunc extends javax.swing.JDialog {
                     new FuncionarioDao().deletar(f);       
                       //preencher a grid
                     ArrayList<Funcionario> listaF = new FuncionarioDao().buscarTodos();
-
+                    listaF.removeAll(listaF);
                     preencheGrid(listaF);
                    
 

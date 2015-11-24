@@ -36,6 +36,15 @@ public class Associado {
         this.id = id;
         this.numConta = numConta;
        
+    }  
+    
+    public Associado( String CPF,String nome, String RG, String telefone, String endereco, String senhaClube) {
+        this.nome = nome;
+        this.RG = RG;
+        this.CPF = CPF;
+        this.telefone = telefone;
+        this.endereco = endereco;
+        this.senhaClube = senhaClube;      
     }    
 
     public String getNome() {

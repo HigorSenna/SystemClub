@@ -57,7 +57,6 @@ public class TelaAssociado extends javax.swing.JDialog {
 
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jLogadoComo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -74,8 +73,6 @@ public class TelaAssociado extends javax.swing.JDialog {
         jButton2.setToolTipText("");
 
         jButton3.setText("Comprar");
-
-        jButton4.setText("Conta Do Bar");
 
         jButton5.setText("Sair do Clube");
 
@@ -99,7 +96,6 @@ public class TelaAssociado extends javax.swing.JDialog {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(212, 212, 212))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -116,10 +112,8 @@ public class TelaAssociado extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton3)
-                .addGap(18, 18, 18)
+                .addGap(52, 52, 52)
                 .addComponent(jButton5)
                 .addContainerGap(38, Short.MAX_VALUE))
         );
@@ -181,7 +175,6 @@ public void setLabel(String texto){
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLogadoComo;
