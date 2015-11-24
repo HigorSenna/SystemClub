@@ -338,6 +338,7 @@ public class TelaCadAssociado extends javax.swing.JDialog {
     }//GEN-LAST:event_jAContaActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
         TelaRemoveAssoci tela = new TelaRemoveAssoci(null, true);
         tela.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed

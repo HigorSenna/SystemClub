@@ -10,7 +10,7 @@ import Log.Historico;
 public class Associado {
     private String nome,RG,CPF,telefone,endereco,senhaClube,tipo;
     private int id,numConta;
-
+   
     
     
     private Historico hist;

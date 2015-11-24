@@ -298,10 +298,13 @@ public class TelaInicial extends javax.swing.JFrame {
                     consultaAssoci(jsenha.getText());
                     String tipo = buscarTipo(jsenha.getText() +"");
                     if(consultaAssoci(jsenha.getText()) == true){   
+                        
                        JOptionPane.showMessageDialog(this, "Verificar Mensalidade! "); 
                        String nome = buscarNome(jsenha.getText()); 
-                       JOptionPane.showMessageDialog(this, "Bem Vindo " + nome); 
-                       TelaAssociado tela = new TelaAssociado(this, true);                        
+                      
+                       JOptionPane.showMessageDialog(this, "Bem Vindo " + nome);                       
+                       TelaAssociado tela = new TelaAssociado(this, true); 
+                       tela.setLabel("Você está logado como " + nome);
                        tela.setVisible(true);                      
                     }
                     else if(consultaAssoci(jsenha.getText()) == true && tipo != "dependente"){
