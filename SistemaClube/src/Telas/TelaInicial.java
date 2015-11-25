@@ -5,6 +5,7 @@
  */
 package Telas;
 
+import DaoClasses.ClassesProjeto.AssociadoDao;
 import Telas.funcionarios.TelaAtendente;
 import MembrosClube.Associado;
 import MembrosClube.AssociadoTitular;
@@ -213,27 +214,6 @@ public class TelaInicial extends javax.swing.JFrame {
             return exist;        
         }
         
-        public String buscarNome(String senha) throws SQLException, ClassNotFoundException {
-        Connection c = ConnectionFactory.getConnection();
-        
-        String sql = "select * from associado_titular WHERE senhaClube = ?;";
-        
-         PreparedStatement stm = c.prepareStatement(sql);
-         stm.setString(1,senha);
-         
-         ResultSet rs = stm.executeQuery();
-         
-         if(rs.next()){
-             AssociadoTitular ass = new AssociadoTitular(rs.getInt("id_associado"),rs.getString("nome"),
-                     rs.getString("RG"),rs.getString("CPF"),rs.getString("telefone")
-                     ,rs.getString("endereco"),rs.getString("senhaClube"),rs.getInt("numConta"));
-                     
-             return ass.getNome();
-         }else{
-             return null;
-         }
-    }
-       
     private void jloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jloginActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jloginActionPerformed
@@ -282,7 +262,7 @@ public class TelaInicial extends javax.swing.JFrame {
                     if(consultaAssoci(jsenha.getText()) == true){   
                         
                        JOptionPane.showMessageDialog(this, "Verificar Mensalidade! "); 
-                       String nome = buscarNome(jsenha.getText()); 
+                       String nome = new AssociadoDao().buscarNome(jsenha.getText()); 
                        nome = nome.toUpperCase();
                        JOptionPane.showMessageDialog(this, "Bem Vindo " + nome);                       
                        TelaAssociado tela = new TelaAssociado(this, true); 

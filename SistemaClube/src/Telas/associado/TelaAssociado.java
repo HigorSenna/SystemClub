@@ -23,28 +23,7 @@ public class TelaAssociado extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
-    
-     public String buscarNome(String senha) throws SQLException, ClassNotFoundException {
-        Connection c = ConnectionFactory.getConnection();
-        
-        String sql = "select * from associado_titular WHERE senhaClube = ?;";
-        
-         PreparedStatement stm = c.prepareStatement(sql);
-         stm.setString(1,senha);
-         
-         ResultSet rs = stm.executeQuery();
-         
-         if(rs.next()){
-             AssociadoTitular ass = new AssociadoTitular(rs.getInt("id_associado"),rs.getString("nome"),
-                     rs.getString("RG"),rs.getString("CPF"),rs.getString("telefone")
-                     ,rs.getString("endereco"),rs.getString("senhaClube"),rs.getInt("numConta"));
-                     
-             return ass.getNome();
-         }else{
-             return null;
-         }
-    }
- 
+     
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -60,6 +39,7 @@ public class TelaAssociado extends javax.swing.JDialog {
         jButton5 = new javax.swing.JButton();
         jLogadoComo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -81,6 +61,8 @@ public class TelaAssociado extends javax.swing.JDialog {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Telas/imagens/associ.png"))); // NOI18N
 
+        jButton1.setText("Depositar Conta Bar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -88,6 +70,10 @@ public class TelaAssociado extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36))
             .addGroup(layout.createSequentialGroup()
                 .addGap(153, 153, 153)
                 .addComponent(jLogadoComo, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -96,12 +82,9 @@ public class TelaAssociado extends javax.swing.JDialog {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(212, 212, 212))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,7 +96,9 @@ public class TelaAssociado extends javax.swing.JDialog {
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton3)
-                .addGap(52, 52, 52)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addGap(18, 18, 18)
                 .addComponent(jButton5)
                 .addContainerGap(38, Short.MAX_VALUE))
         );
@@ -173,6 +158,7 @@ public void setLabel(String texto){
 }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;

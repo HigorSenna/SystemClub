@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `sistema_clube` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `sistema_clube`;
--- MySQL dump 10.13  Distrib 5.6.23, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.24, for Win64 (x86_64)
 --
 -- Host: localhost    Database: sistema_clube
 -- ------------------------------------------------------
--- Server version	5.6.24-log
+-- Server version	5.6.25
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -94,8 +94,9 @@ DROP TABLE IF EXISTS `contabar`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `contabar` (
   `numContaBar` int(11) NOT NULL,
-  `tipo` varchar(20) NOT NULL DEFAULT 'Comum',
+  `tipo` varchar(20) DEFAULT 'Comum',
   `saldo` decimal(5,2) DEFAULT '0.00',
+  `limite` decimal(5,2) DEFAULT NULL,
   PRIMARY KEY (`numContaBar`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -106,6 +107,7 @@ CREATE TABLE `contabar` (
 
 LOCK TABLES `contabar` WRITE;
 /*!40000 ALTER TABLE `contabar` DISABLE KEYS */;
+INSERT INTO `contabar` VALUES (125,'comum',500.00,NULL);
 /*!40000 ALTER TABLE `contabar` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -147,7 +149,7 @@ CREATE TABLE `funcionario` (
   `login` varchar(20) NOT NULL,
   `senha` varchar(20) NOT NULL,
   PRIMARY KEY (`id_funcionario`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -156,7 +158,7 @@ CREATE TABLE `funcionario` (
 
 LOCK TABLES `funcionario` WRITE;
 /*!40000 ALTER TABLE `funcionario` DISABLE KEYS */;
-INSERT INTO `funcionario` VALUES (1,'Teste','a','a'),(4,'TesteModificado','aa','aa');
+INSERT INTO `funcionario` VALUES (1,'Teste','a','a'),(4,'TesteModificado','aa','aa'),(5,'Adm','adm','adm');
 /*!40000 ALTER TABLE `funcionario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -221,4 +223,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-23 16:41:47
+-- Dump completed on 2015-11-24 22:14:47

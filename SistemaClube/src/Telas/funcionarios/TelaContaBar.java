@@ -41,7 +41,7 @@ public class TelaContaBar extends javax.swing.JDialog {
         jTabelaDep = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -55,18 +55,23 @@ public class TelaContaBar extends javax.swing.JDialog {
 
             },
             new String [] {
-                "CPF", "Nome", "Endereço", "Telefone", "RG", "Senha"
+                "CPF", "Nome", "Endereço", "Telefone", "RG", "Senha", "Numero Conta Bar"
             }
         ));
         jScrollPane1.setViewportView(jTabelaDep);
 
         jButton1.setText("Inserir Conta");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Adicionar Conta do Bar");
+        jLabel1.setText("Informaçoes da Bar");
 
-        jLabel2.setText("Escolha um associado:");
+        jButton2.setText("Vincular Conta");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -75,31 +80,31 @@ public class TelaContaBar extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(155, 155, 155)
-                        .addComponent(jButton1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(15, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(55, 55, 55)
+                .addComponent(jButton1)
+                .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(42, 42, 42)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
-                .addComponent(jButton1)
-                .addContainerGap(162, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -121,6 +126,11 @@ public class TelaContaBar extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_formWindowOpened
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      TelaInserirContaBar tela = new TelaInserirContaBar(null,true);
+      tela.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
      private void preencheGrid(ArrayList<AssociadoTitular> listaAT) {
         DefaultTableModel table = (DefaultTableModel) jTabelaDep.getModel(); /*DfaultTableModel 
         utilizado para nao ter que escrever toda hora jTabela.getModel().removeRow,
@@ -131,14 +141,14 @@ public class TelaContaBar extends javax.swing.JDialog {
         }
 
         for (AssociadoTitular a : listaAT) {
-            String[] linha = {a.getId() + "",
-                a.getNome(),
+            String[] linha = {
                 a.getCPF(),
-                a.getRG(),
+                a.getNome(), 
                 a.getEndereco(),
                 a.getTelefone(),
-                a.getSenhaClube(),
-                a.getC().getNumero() + ""};
+                a.getRG(),          
+                a.getSenhaClube()
+                };
             table.addRow(linha);
         }        
         
@@ -187,8 +197,8 @@ public class TelaContaBar extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTabelaDep;
     // End of variables declaration//GEN-END:variables

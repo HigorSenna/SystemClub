@@ -4,6 +4,11 @@ package MembrosClube;
 import Financeiro.ContaBancaria;
 import Financeiro.ContaBar;
 import Financeiro.Mensalidade;
+import conexao.ConnectionFactory;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -22,9 +27,10 @@ public class AssociadoTitular extends Associado{
         super();
     }
     public AssociadoTitular(int id, String nome, String RG, String CPF, 
-        String telefone, String endereco, String senhaClube,int numConta) {
+        String telefone, String endereco, String senhaClube,ContaBancaria conta) {
         
-        super(id,nome, RG, CPF, telefone, endereco, senhaClube,numConta);
+        super(id,nome, RG, CPF, telefone, endereco, senhaClube);
+        setC(conta);
         
     }  
 
@@ -73,6 +79,7 @@ public class AssociadoTitular extends Associado{
     
     private void sacarRestanteBar(){
     }
+    
     
     
 }
